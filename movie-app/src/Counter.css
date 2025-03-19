@@ -1,0 +1,24 @@
+.counter-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.increment-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.decrement-button {
+    margin-left: 10px;
+    background-color: #f48b36;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
