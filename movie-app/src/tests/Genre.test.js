@@ -1,5 +1,5 @@
 import {render, screen, fireEvent} from "@testing-library/react"
-import  Genre from '../Genre'
+import  Genre from '../components/genre/Genre'
 
 describe("Genre component tests", () => {
     it("renders all genres", () => {

@@ -1,5 +1,5 @@
 import {render, screen, fireEvent} from "@testing-library/react"
-import Counter from "../Counter";
+import Counter from "../components/counter/Counter";
 
 describe("Counter component tests", () => {
     it("renders initial value", () => {
