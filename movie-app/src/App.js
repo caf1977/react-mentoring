@@ -1,7 +1,7 @@
-import Counter from './Counter';
 import React from 'react';
-import Search from './Search';
-import Genre from './Genre';
+import Counter from './components/counter/Counter';
+import Search from './components/search/Search';
+import Genre from './components/genre/Genre';
 
 class App extends React.Component {
   constructor(props) {
