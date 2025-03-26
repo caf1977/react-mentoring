@@ -1,0 +1,17 @@
+.genre-container {
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.genre-button {
+    padding: 10px 40px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.genre-button.selected {
+    background-color: #4c4eaf;
+    color: white;
+    font-weight: bold;
+  }
