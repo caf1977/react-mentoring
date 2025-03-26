@@ -4,6 +4,12 @@
     margin-left: 20px;
 }
 
+.search-input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+
 .search-input {
     width: 600px;
     height: 15px;

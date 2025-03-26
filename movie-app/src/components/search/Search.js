@@ -33,13 +33,21 @@ class Search extends React.Component {
         return React.createElement(
             "div",
             {className: "search-container"},
-            React.createElement("h1", null, "FIND YOUR MOVIE"),
+            React.createElement("label", 
+                {
+                    htmlFor: "input-field",
+                    className: "search-input-label"
+                }, 
+                "FIND YOUR MOVIE"
+            ),
             React.createElement(
                 "input",
                 {
+                    id: "input-field",
                     type: "text",
                     placeholder: "What do you want to watch?",
                     className: "search-input",
+                    value: this.state.query,
                     onChange: this.handleInputChange,
                     onKeyDown: this.handleKeyPress
                 }
