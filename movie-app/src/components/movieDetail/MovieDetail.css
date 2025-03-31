@@ -1,0 +1,20 @@
+.movie-detail {
+    border: 1px solid;
+    padding: 10px;
+    display: flex;
+    width: 50%;
+}
+
+.movie-detail img {
+    height: 250px;
+    width: 250px;
+}
+
+.movie-detail-info {
+    font-size: 14px;
+    color: #666;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
