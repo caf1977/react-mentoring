@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortBy component tests renders snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sort-by-container"
+  >
+    <label
+      for="sort-by-list"
+    >
+      SORT BY:
+    </label>
+    <select
+      id="sort-by-list"
+    >
+      <option
+        value="Release Date"
+      >
+        RELEASE DATE
+      </option>
+      <option
+        value="Title"
+      >
+        TITLE
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;

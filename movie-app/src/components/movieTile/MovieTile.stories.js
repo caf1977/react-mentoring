@@ -12,7 +12,7 @@ export default {
             releaseYear: 2020,
             genres: ["Action", "Sci-Fi"],
         },
-        onSelect: fn(),
+        onClick: fn(),
     }
 }
 

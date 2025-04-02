@@ -4,12 +4,14 @@ import Search from './components/search/Search';
 import Genre from './components/genre/Genre';
 import MovieTile from './components/movieTile/MovieTile';
 import MovieDetail from './components/movieDetail/MovieDetail';
+import SortBy from './components/sortBy/SortBy';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedGenre: "Drama"
+      selectedGenre: "Drama",
+      selectedSort: "Release Date",
     };
     this.movies = [
       {
@@ -41,6 +43,7 @@ class App extends React.Component {
       }
     ]
     this.handleSelectedGenre = this.handleSelectedGenre.bind(this);
+    this.handleSelectedSort = this.handleSelectedSort.bind(this);
   }
 
   handleSearch = (query) => {
@@ -55,6 +58,12 @@ class App extends React.Component {
 
   handleMovieTileClick = (movieInfo) => {
     alert(`Movie tile clicked: ${movieInfo.movieName}`);
+  }
+
+  handleSelectedSort = (sortBy) => {
+    this.setState({
+      selectedSort: sortBy
+    })
   }
 
   render() {
@@ -83,6 +92,13 @@ class App extends React.Component {
         React.createElement(MovieDetail, {
           movieInfo: this.movies[0],
         })
+      ),
+      React.createElement("div", {style: {margin: "20px"}},
+        React.createElement(SortBy, {
+          currentSelection: this.state.selectedSort,
+          onSelectionChange: this.handleSelectedSort
+        }),
+          React.createElement("p", null, `Current sort: ${this.state.selectedSort}`)
       )
     );
   }

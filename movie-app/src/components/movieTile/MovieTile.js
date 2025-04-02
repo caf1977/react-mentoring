@@ -2,7 +2,7 @@ import './MovieTile.css'
 
 const MovieTile = ({movieInfo, onClick}) => {
     return (
-        <div className="movie-tile" onClick={() => onClick(movieInfo)}>
+        <div data-testid="info" className="movie-tile" onClick={() => onClick(movieInfo)}>
             <img src={movieInfo.imageUrl} alt={movieInfo.movieName}/>
             <div className="movie-tile-info">
                 <h3>{movieInfo.movieName}</h3>
