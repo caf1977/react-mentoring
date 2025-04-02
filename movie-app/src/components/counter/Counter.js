@@ -30,6 +30,7 @@ class Counter extends React.Component {
                 "button",
                 {
                     className: "increment-button",
+                    data: "increment",
                     onClick: this.increment
                 },
                 "Increment"
@@ -38,6 +39,7 @@ class Counter extends React.Component {
                 "button",
                 {
                     className: "decrement-button",
+                    data: "decrement",
                     onClick: this.decrement
                 },
                 "Decrement"
