@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie component tests render snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="movie-tile"
+    data-testid="info"
+  >
+    <img
+      alt="Mission Impossible"
+      src="https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+    />
+    <div
+      class="movie-tile-info"
+    >
+      <h3>
+        Mission Impossible
+      </h3>
+      <div
+        class="movie-tile-info-year"
+      >
+        <h2>
+          2018
+        </h2>
+      </div>
+    </div>
+    <p>
+      Drama,Thriller
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MovieTile component tests render snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="movie-tile"
+    data-testid="info"
+  >
+    <img
+      alt="Mission Impossible"
+      src="https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+    />
+    <div
+      class="movie-tile-info"
+    >
+      <h3>
+        Mission Impossible
+      </h3>
+      <div
+        class="movie-tile-info-year"
+      >
+        <h2>
+          2018
+        </h2>
+      </div>
+    </div>
+    <p>
+      Drama,Thriller
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MovieTile component tests renders snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="movie-tile"
+    data-testid="info"
+  >
+    <img
+      alt="Mission Impossible"
+      src="https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+    />
+    <div
+      class="movie-tile-info"
+    >
+      <h3>
+        Mission Impossible
+      </h3>
+      <div
+        class="movie-tile-info-year"
+      >
+        <h2>
+          2018
+        </h2>
+      </div>
+    </div>
+    <p>
+      Drama,Thriller
+    </p>
+  </div>
+</DocumentFragment>
+`;
