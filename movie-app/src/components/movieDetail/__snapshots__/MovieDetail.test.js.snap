@@ -12,35 +12,37 @@ exports[`MovieDetail component tests renders snapshot 1`] = `
     <div
       class="movie-detail-info"
     >
+      <div
+        class="movie-detail-header"
+      >
+        <div
+          class="movie-detail-name"
+        >
+          Spider Man
+        </div>
+        <div
+          class="movie-detail-rating"
+        >
+          8.8
+        </div>
+      </div>
+      <div
+        class="movie-detail-genres"
+      >
+        Sci-Fi,Action
+      </div>
+      <div
+        class="movie-detail-middle"
+      >
+        <h2>
+          2020
+        </h2>
+        <h2>
+          120 minutes
+        </h2>
+      </div>
       <p>
-        <b>
-          Name:
-        </b>
-         Spider Man
-      </p>
-      <p>
-        <b>
-          Release year:
-        </b>
-         2020
-      </p>
-      <p>
-        <b>
-          Rating:
-        </b>
-         PG
-      </p>
-      <p>
-        <b>
-          Duration:
-        </b>
-         120 minutes
-      </p>
-      <p>
-        <b>
-          Description:
-        </b>
-         Peter Parker returns home to live with his Aunt May and mentor Tony Stark after his debut as Spider-Man in Captain America: Civil War.
+        Peter Parker returns home to live with his Aunt May and mentor Tony Stark after his debut as Spider-Man in Captain America: Civil War.
       </p>
     </div>
   </div>

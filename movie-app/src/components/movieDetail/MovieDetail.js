@@ -5,11 +5,16 @@ const MovieDetail = ({movieInfo}) => {
         <div className="movie-detail">
             <img src={movieInfo.imageUrl} alt={movieInfo.movieName}/>
             <div className="movie-detail-info">
-                <p><b>Name:</b> {movieInfo.movieName}</p>
-                <p><b>Release year:</b> {movieInfo.releaseYear}</p>
-                <p><b>Rating:</b> {movieInfo.rating}</p>
-                <p><b>Duration:</b> {movieInfo.duration}</p>
-                <p><b>Description:</b> {movieInfo.description}</p>
+                <div className="movie-detail-header">
+                    <div className="movie-detail-name">{movieInfo.movieName}</div>
+                    <div className="movie-detail-rating">{movieInfo.rating}</div>
+                </div>
+                <div className="movie-detail-genres">{movieInfo.genres.join(",")}</div>
+                <div className="movie-detail-middle">
+                    <h2>{movieInfo.releaseYear}</h2>
+                    <h2>{movieInfo.duration}</h2>
+                </div>
+                <p>{movieInfo.description}</p>
             </div>
         </div>
     )
