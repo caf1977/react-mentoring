@@ -5,6 +5,8 @@ import Genre from './components/genre/Genre';
 import MovieTile from './components/movieTile/MovieTile';
 import MovieDetail from './components/movieDetail/MovieDetail';
 import SortBy from './components/sortBy/SortBy';
+import Dialog from './components/dialog/Dialog';
+import MovieForm from './components/movieForm/MovieForm';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class App extends React.Component {
     this.state = {
       selectedGenre: "Drama",
       selectedSort: "Release Date",
+      isDialogOpen: false,
     };
     this.movies = [
       {
@@ -66,6 +69,18 @@ class App extends React.Component {
     })
   }
 
+  openDialog = () => {
+    this.setState({isDialogOpen: true});
+  }
+
+  closeDialog = () => {
+    this.setState({isDialogOpen: false});
+  }
+
+  handleFormSubmit = (movieInfo) => {
+    console.log(movieInfo);
+  }
+
   render() {
     return React.createElement(
       "div",
@@ -98,7 +113,26 @@ class App extends React.Component {
           currentSelection: this.state.selectedSort,
           onSelectionChange: this.handleSelectedSort
         }),
-          React.createElement("p", null, `Current sort: ${this.state.selectedSort}`)
+        React.createElement("p", null, `Current sort: ${this.state.selectedSort}`)
+      ),
+      React.createElement("div", {id: "modal-root", style: {margin: "20px"}},
+        React.createElement("button", {onClick: this.openDialog}, "Open Modal"),
+        this.state.isDialogOpen && (
+          React.createElement(Dialog, 
+            {
+              title: "Custom Dialog",
+              onClose: this.closeDialog,
+            },
+            React.createElement("p", null, "This is a custom dialog example")
+          )
+        )
+      ),
+      React.createElement("div", {style: {margin: "20px"}},
+        React.createElement(MovieForm,
+          {
+            onSubmit: this.handleFormSubmit,
+          }
+        )
       )
     );
   }
