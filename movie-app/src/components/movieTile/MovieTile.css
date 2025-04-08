@@ -1,0 +1,37 @@
+.movie-tile {
+    border: 1px solid;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.movie-tile img {
+    height: 350px;
+    width: 300px;
+}
+
+.movie-tile p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.movie-tile-info {
+    display: flex;
+}
+
+.movie-tile-info-year {
+    padding-left: 70px;
+}
+
+.movie-tile-info-year h2 {
+    border: 1px solid;
+    margin: 2px;
+    font-size: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.movie-tile-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
