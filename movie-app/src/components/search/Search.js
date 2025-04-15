@@ -5,7 +5,7 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: props.initialQuery || "Empty"
+            query: props.initialQuery
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);

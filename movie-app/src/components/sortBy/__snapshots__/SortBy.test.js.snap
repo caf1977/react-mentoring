@@ -11,6 +11,7 @@ exports[`SortBy component tests renders snapshot 1`] = `
       SORT BY:
     </label>
     <select
+      class="sort-by-list"
       id="sort-by-list"
     >
       <option

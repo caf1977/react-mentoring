@@ -15,7 +15,6 @@ class Genre extends React.Component {
         return React.createElement(
             "div",
             {className: "genre-container"},
-            React.createElement("h3", {style: {color: "red"}}, "GENRE"),
             this.props.initialGenres.map((genre) =>
                 React.createElement(
                     "button",

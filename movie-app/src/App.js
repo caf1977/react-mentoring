@@ -7,6 +7,7 @@ import MovieDetail from './components/movieDetail/MovieDetail';
 import SortBy from './components/sortBy/SortBy';
 import Dialog from './components/dialog/Dialog';
 import MovieForm from './components/movieForm/MovieForm';
+import MovieListPage from './components/movieListPage/MovieListPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -82,7 +83,7 @@ class App extends React.Component {
   }
 
   render() {
-    return React.createElement(
+    /*return React.createElement(
       "div",
       null,
       React.createElement(Counter, { initialValue: 0 }),
@@ -134,7 +135,10 @@ class App extends React.Component {
           }
         )
       )
-    );
+    );*/
+    return (
+      <MovieListPage />
+    )
   }
 }
 

@@ -15,6 +15,7 @@ const SortBy = ({
                 SORT BY:
             </label>
             <select
+                className="sort-by-list"
                 id="sort-by-list"
                 value={currentSelection}
                 onChange={handleChange}

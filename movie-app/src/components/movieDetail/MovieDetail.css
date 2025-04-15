@@ -1,34 +1,36 @@
 .movie-detail {
-    border: 1px solid;
-    padding: 10px;
+    padding: 40px 10px 20px 10px;
     display: flex;
-    width: 50%;
+    background-color: #232323;
 }
 
 .movie-detail img {
-    height: 250px;
+    height: 300px;
     width: 250px;
 }
 
 .movie-detail-info {
     font-size: 14px;
-    color: #666;
+    font-weight: lighter;
+    color: white;
     padding: 15px;
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
+    padding-left: 30px;
+    padding-top: 0;
+    width: 60%;
 }
 
 .movie-detail-name {
     font-size: 24px;
-    font-weight: bold;
-    color: #0f0e0e;
+    font-weight: lighter;
+    color: white;
     text-transform: uppercase;
 }
 
 .movie-detail-rating {
     font-weight: bold;
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 50%;
     width: 40px;
     height: 30px;
@@ -56,4 +58,5 @@
     margin-bottom: 5px;
     margin-right: 30px;
     font-size: 14px;
+    font-weight: lighter;
 }
