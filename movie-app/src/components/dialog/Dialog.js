@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import { FocusTrap } from "focus-trap-react";
+import FocusTrap from "focus-trap-react";
 import './Dialog.css';
 
 const Dialog = ({title, children, onClose}) => {

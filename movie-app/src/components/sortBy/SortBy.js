@@ -20,8 +20,8 @@ const SortBy = ({
                 value={currentSelection}
                 onChange={handleChange}
             >
-                <option value="Release Date">RELEASE DATE</option>
-                <option value="Title">TITLE</option>
+                <option value="release_date">RELEASE DATE</option>
+                <option value="title">TITLE</option>
             </select>    
         </div>
     );
