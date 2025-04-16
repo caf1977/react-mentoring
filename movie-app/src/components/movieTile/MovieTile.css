@@ -1,18 +1,18 @@
 .movie-tile {
-    border: 1px solid;
+    background-color: #232323;
     padding: 10px;
     cursor: pointer;
 }
 
 .movie-tile img {
-    height: 350px;
-    width: 300px;
+    height: 300px;
+    width: 250px;
 }
 
 .movie-tile p {
     margin: 0;
-    font-size: 14px;
-    color: #666;
+    font-size: 12px;
+    color: white;
 }
 
 .movie-tile-info {
@@ -29,9 +29,11 @@
     font-size: 15px;
     padding-left: 5px;
     padding-right: 5px;
+    color: white;
 }
 
 .movie-tile-info h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 14px;
+    color: white;
 }

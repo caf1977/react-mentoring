@@ -7,9 +7,9 @@ export default {
     tags: ['autodocs'],
     args: {
         movieInfo: {
-            imageUrl: "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
-            movieName: "Spider Man",
-            releaseYear: 2020,
+            poster_path: "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
+            title: "Spider Man",
+            release_date: 2020,
             genres: ["Action", "Sci-Fi"],
         },
         onClick: fn(),

@@ -12,12 +12,12 @@ export default {
 
 export const ReleaseDate = {
     args: {
-        currentSelection: "Release Date",
+        currentSelection: "release_date",
     }
 }
 
 export const Title = {
     args: {
-        currentSelection: "Title",
+        currentSelection: "title",
     }
 }

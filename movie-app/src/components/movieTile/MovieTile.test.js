@@ -4,9 +4,9 @@ import MovieTile from "./MovieTile";
 describe("MovieTile component tests", () => {
 
     const movie = {
-        imageUrl: "https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-        movieName: "Mission Impossible",
-        releaseYear: 2018,
+        poster_path: "https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        title: "Mission Impossible",
+        release_date: 2018,
         genres: ["Drama", "Thriller"],
     };
 

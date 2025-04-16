@@ -12,7 +12,7 @@ describe("SortBy component tests", () => {
     })
 
     it("release date as current selection", () => {
-        render(<SortBy currentSelection={"Release Date"}/>);
+        render(<SortBy currentSelection={"release_date"}/>);
         const dropdown = screen.getByLabelText("SORT BY:");
 
         expect(dropdown).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe("SortBy component tests", () => {
     })
 
     it("title as current selection", () => {
-        render(<SortBy currentSelection={"Title"}/>);
+        render(<SortBy currentSelection={"title"}/>);
         const dropdown = screen.getByLabelText("SORT BY:");
 
         expect(dropdown).toBeInTheDocument();
@@ -34,14 +34,14 @@ describe("SortBy component tests", () => {
         render(<SortBy onSelectionChange={(value) => {alert(value)}}/>);
         const dropdown = screen.getByLabelText("SORT BY:");
         fireEvent.click(dropdown);
-        fireEvent.change(dropdown, { target: {value: "Title"}});
+        fireEvent.change(dropdown, { target: {value: "title"}});
 
-        expect(window.alert).toHaveBeenCalledWith("Title");
+        expect(window.alert).toHaveBeenCalledWith("title");
     })
 
     it("renders snapshot", () => {
-        const { asFragment } = render(<SortBy currentSelection={"Release Date"}/>);
+        const { asFragment } = render(<SortBy currentSelection={"release_date"}/>);
 
-        expect(asFragment(<SortBy currentSelection={"Release Date"}/>)).toMatchSnapshot();
+        expect(asFragment(<SortBy currentSelection={"release_date"}/>)).toMatchSnapshot();
     })
 })

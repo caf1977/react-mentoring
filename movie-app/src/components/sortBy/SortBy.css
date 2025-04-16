@@ -1,4 +1,18 @@
 .sort-by-container {
     display: flex;
     gap: 10px;
+    color: #555555;
+    font-size: small;
+    align-items: center;
+}
+
+.sort-by-list {
+    background-color: #232323;
+    font-size: small;
+    color: white;
+    border: none;
+}
+
+.sort-by-list option {
+    font-size: small;
 }

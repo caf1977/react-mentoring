@@ -4,13 +4,13 @@ import MovieDetail from "./MovieDetail";
 describe("MovieDetail component tests", () => {
 
     const movie = {
-        imageUrl: "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
-        movieName: "Spider Man",
-        releaseYear: 2020,
-        rating: "8.8",
-        duration: "120 minutes",
+        poster_path: "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
+        title: "Spider Man",
+        release_date: 2020,
+        vote_average: "8.8",
+        runtime: "120 minutes",
         genres: ["Sci-Fi", "Action"],
-        description: "Peter Parker returns home to live with his Aunt May and mentor Tony Stark after his debut as Spider-Man in Captain America: Civil War.",
+        overview: "Peter Parker returns home to live with his Aunt May and mentor Tony Stark after his debut as Spider-Man in Captain America: Civil War.",
     };
 
     it("renders movie detail info", () => {
