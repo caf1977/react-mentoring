@@ -60,3 +60,30 @@
     font-size: 14px;
     font-weight: lighter;
 }
+
+.movie-detail-container {
+    background-color: #232323;
+    width: 60%;
+    height: 70%;
+    padding: 10px 60px 20px;
+}
+
+.icon-search-container {
+    display: flex;
+}
+
+.icon-search-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #f65261;
+    padding-top: 20px;
+    font-size: 18px;
+    transition: color 0.3s;
+    transform: rotate(90deg);
+    margin-left: auto;
+}
+
+.icon-search-button:hover {
+    color: #cccccc;
+}

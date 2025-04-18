@@ -1,36 +1,47 @@
 import { useState, useEffect } from 'react';
+import { Outlet, useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { FaSearch } from 'react-icons/fa';
 import './MovieListPage.css';
-import Search from "../search/Search";
 import Genre from "../genre/Genre";
 import SortBy from "../sortBy/SortBy";
 import MovieTile from "../movieTile/MovieTile";
-import MovieDetail from "../movieDetail/MovieDetail";
 
 const MovieListPage = () => {
-    const [search, setSearch] = useState("");
-    const [genre, setGenre] = useState("ALL");
-    const [sortBy, setSortBy] = useState("title");
-    const [movieInfo, setMovieInfo] = useState();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+
+    const search = searchParams.get("search") || "";
+    const genre = searchParams.get("genre") || "ALL";
+    const sortBy = searchParams.get("sortBy") || "title"; 
+
     const [movies, setMovies] = useState([]);
 
     const initialGenres = ["ALL", "DOCUMENTARY", "COMEDY", "HORROR", "CRIME"]; 
 
-    const handleSearch = (query) => {
-        setSearch(query);
+    const updateSearchParams = (newParams) => {
+        setSearchParams((prev) => {
+            const updated = new URLSearchParams(prev);
+            Object.entries(newParams).forEach(([key, value]) => {
+                if (value) {
+                    updated.set(key, value);
+                } else {
+                    updated.delete(key);
+                }
+            });
+            return updated;
+        });
     };
 
     const handleSelectedGenre = (selectedGenre) => {
-        setGenre(selectedGenre);
+        updateSearchParams({ genre: selectedGenre });
     };
 
     const handleSelectedSort = (selectedSortBy) => {
-        setSortBy(selectedSortBy);
+        updateSearchParams({ sortBy: selectedSortBy });
     };
 
-    const handleMovieTileClick = (selectedMovie) => {
-        setMovieInfo(selectedMovie);
+    const handleMovieTileClick = (movieId) => {
+        navigate(`/${movieId}?${searchParams.toString()}`);
     };
 
     useEffect(() => {
@@ -67,21 +78,8 @@ const MovieListPage = () => {
 
     return (
         <div className="page-container">
-            {movieInfo ? (
-                <div className="movie-detail-container">
-                    <div className="icon-search-container">
-                        <button 
-                            className="icon-search-button" 
-                            onClick={() => { setMovieInfo(null) }} 
-                            title="Back to Search">
-                            <FaSearch />
-                        </button>                    
-                    </div>
-                    <MovieDetail movieInfo={movieInfo} />
-                </div>
-            ) : (
-                <Search initialQuery={search} onSearch={handleSearch} />
-            )}
+            <Outlet />
+
             <div className="body-container">
                 <div className="search-bar">
                     <Genre
@@ -95,7 +93,7 @@ const MovieListPage = () => {
                     />
                 </div>
                 <hr />
-                <div style={{ color: "white", fontFamily: "small", fontWeight: "lighter" }}>
+                <div data-testid="counter" style={{ color: "white", fontFamily: "small", fontWeight: "lighter" }}>
                     <b>{movies.length}</b> movies found
                 </div>
                 <div className="movie-tile-container">
@@ -103,7 +101,7 @@ const MovieListPage = () => {
                         return (
                             <MovieTile
                                 movieInfo={movie}
-                                onClick={handleMovieTileClick}
+                                onClick={() => handleMovieTileClick(movie.id)}
                             />
                         )
                     })}
