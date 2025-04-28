@@ -3,12 +3,12 @@ import './MovieTile.css'
 const MovieTile = ({movieInfo, onClick}) => {
     return (
         <div data-testid="info" className="movie-tile" onClick={() => onClick(movieInfo)}>
-            <img src={movieInfo.imageUrl} alt={movieInfo.movieName}/>
+            <img src={movieInfo.poster_path} alt={movieInfo.title}/>
             <div className="movie-tile-info">
-                <h3>{movieInfo.movieName}</h3>
+                <h3>{movieInfo.title}</h3>
                 <div className="movie-tile-info-year">
                     <h2>
-                        {movieInfo.releaseYear}
+                        {movieInfo.release_date}
                     </h2>
                 </div>
             </div>
