@@ -28,14 +28,16 @@ const Search = ({ initialQuery = "", onSearch }) => {
 
     return (
         <div className="search-container">
-            <button
-                className="search-button"
-                onClick={ handleAddMovieClick }
-            >
-                + ADD MOVIE
-            </button>
+            <div className="add-movie-container">
+                <button
+                    className="add-movie-button"
+                    onClick={ handleAddMovieClick }
+                >
+                    + ADD MOVIE
+                </button>
+            </div>
             <label htmlFor="input-field" className="search-input-label">
-                "FIND YOUR MOVIE"
+                FIND YOUR MOVIE
             </label>
             <input
                 id="input-field"

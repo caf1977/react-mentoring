@@ -4,15 +4,22 @@ import MovieListPage from './components/movieListPage/MovieListPage';
 import SearchWrapper from './components/search/SearchWrapper';
 import MovieDetailWrapper from './components/movieDetail/MovieDetailWrapper';
 import AddMovieForm from './components/addMovieForm/AddMovieForm';
+import EditMovieForm from './components/editMovieForm/EditMovieForm';
 
 const fetchMovieDetails = async ({ params }) => {
   const { movieId } = params;
+  console.log("Loader fetchMovieDetails triggered for movieId:", params.movieId);
 
-  const response = await fetch(`http://localhost:4000/movies/${movieId}`);
-  if (!response.ok) {
+  try {
+    const response = await fetch(`http://localhost:4000/movies/${movieId}`);
+    
+    if (!response.ok) {
       throw new Error("Failed to fetch movie details");
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Failed to fetch movie details", error);
   }
-  return response.json();
 };
 
 const router = createBrowserRouter([
@@ -33,7 +40,14 @@ const router = createBrowserRouter([
       {
         path: ":movieId",
         element: <MovieDetailWrapper />,
-        loader: fetchMovieDetails
+        loader: fetchMovieDetails,
+        children: [
+          {
+            path: "edit",
+            element: <EditMovieForm />,
+            loader: fetchMovieDetails,
+          }
+        ]
       }
     ]
   }

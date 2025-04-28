@@ -1,4 +1,5 @@
 import { fn } from '@storybook/test';
+import { MemoryRouter } from "react-router-dom";
 import MovieTile from "./MovieTile";
 
 export default {
@@ -13,7 +14,15 @@ export default {
             genres: ["Action", "Sci-Fi"],
         },
         onClick: fn(),
-    }
+    },
+    decorators: [
+        (Story) => (
+            // Wrap the component in a Router context
+            <MemoryRouter>
+                <Story />
+            </MemoryRouter>
+        ),
+    ],
 }
 
 export const Tile = {
