@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Search.css';
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router";
 
 const Search = ({ initialQuery = "", onSearch }) => {
     const [searchParams] = useSearchParams();

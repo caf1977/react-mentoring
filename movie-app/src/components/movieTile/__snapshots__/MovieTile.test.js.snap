@@ -2,14 +2,24 @@
 
 exports[`MovieTile component tests renders snapshot 1`] = `
 <DocumentFragment>
+   
   <div
     class="movie-tile"
     data-testid="info"
   >
-    <img
-      alt="Mission Impossible"
-      src="https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-    />
+    <div
+      class="image-container"
+    >
+      <img
+        alt="Mission Impossible"
+        src="https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+      />
+      <button
+        class="three-dots-button"
+      >
+        …
+      </button>
+    </div>
     <div
       class="movie-tile-info"
     >

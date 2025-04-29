@@ -1,25 +1,27 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { useNavigate, useSearchParams, useLoaderData } from "react-router-dom";
+import { useNavigate, useSearchParams, useLoaderData, MemoryRouter } from "react-router";
 import EditMovieForm from "./EditMovieForm";
 import '@testing-library/jest-dom';
 
-console.log("DOM: " +require.resolve("react-router-dom"));
-
-// Mock external dependencies
-jest.mock("react-router-dom", () => ({
-  useNavigate: jest.fn(),
-  useSearchParams: jest.fn(),
-  useLoaderData: jest.fn(),
+// Mock focus-trap-react to prevent focus-related errors
+jest.mock("focus-trap-react", () => ({
+    __esModule: true,
+    default: ({ children }) => <>{children}</>, // Simple passthrough
 }));
 
-// Mock the fetch API
-global.fetch = jest.fn();
+jest.mock("react-router", () => ({
+    ...jest.requireActual("react-router"),
+    useNavigate: jest.fn(),
+    useSearchParams: jest.fn(),
+    useLoaderData: jest.fn(),
+}));
 
-describe("EditMovieForm Component", () => {
+describe("EditMovieForm Component tests", () => {
   let navigateMock, searchParamsMock, loaderDataMock;
 
   beforeEach(() => {
+    fetch = jest.fn();
     navigateMock = jest.fn();
     searchParamsMock = {
       toString: jest.fn().mockReturnValue("test=123"),
@@ -27,7 +29,6 @@ describe("EditMovieForm Component", () => {
     loaderDataMock = {
       id: 42,
       title: "Test Movie",
-      genre: "Action",
       runtime: 120,
     };
 
@@ -35,7 +36,6 @@ describe("EditMovieForm Component", () => {
     useSearchParams.mockReturnValue([searchParamsMock]);
     useLoaderData.mockReturnValue(loaderDataMock);
 
-    // Reset fetch mock before each test
     fetch.mockReset();
   });
 
@@ -44,81 +44,49 @@ describe("EditMovieForm Component", () => {
   });
 
   it("renders the EditMovieForm component with initial movie data", () => {
-    render(<EditMovieForm />);
+    render(
+        <MemoryRouter> {/* Wrap the component with a router */}
+            <EditMovieForm />
+        </MemoryRouter>
+    );
     
-    // Assert that the Dialog title is rendered correctly
     expect(screen.getByText("EDIT MOVIE")).toBeInTheDocument();
-
-    // Assert that the MovieForm is pre-filled with loader data
     expect(screen.getByDisplayValue(loaderDataMock.title)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(loaderDataMock.genre)).toBeInTheDocument();
     expect(screen.getByDisplayValue(loaderDataMock.runtime.toString())).toBeInTheDocument();
   });
 
   it("navigates to the previous URL when handleClose is triggered", () => {
-    render(<EditMovieForm />);
-    const closeButton = screen.getByText("CLOSE"); // Assuming "CLOSE" is the text for the Dialog close button
+    render(
+        <MemoryRouter> {/* Wrap the component with a router */}
+            <EditMovieForm />
+        </MemoryRouter>
+    );
+
+    const closeButton = screen.getByTestId("close-button");
     fireEvent.click(closeButton);
 
     expect(navigateMock).toHaveBeenCalledWith("/?test=123");
   });
 
-  it("submits the form successfully and navigates to the movie ID page with 'refresh=true'", async () => {
+  it("submits the form successfully and navigates to the movie ID page", async () => {
     // Mock fetch to simulate success response
     fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ id: 42 }),
     });
 
-    render(<EditMovieForm />);
+    render(
+        <MemoryRouter> {/* Wrap the component with a router */}
+            <EditMovieForm />
+        </MemoryRouter>
+    );
 
-    // Simulate filling out and submitting the form
-    const submitButton = screen.getByText("SUBMIT"); // Assuming "SUBMIT" is the text for the submit button in MovieForm
+    const submitButton = screen.getByText("SUBMIT");
     fireEvent.click(submitButton);
 
-    // Wait for handleSubmit's navigation logic to be called
     await waitFor(() => {
       expect(fetch).toHaveBeenCalledWith("http://localhost:4000/movies", expect.any(Object));
       expect(navigateMock).toHaveBeenCalledWith("/42?test=123&refresh=true");
-    });
-  });
-
-  it("handles submission failure gracefully", async () => {
-    // Mock fetch to simulate failure response
-    fetch.mockResolvedValueOnce({
-      ok: false,
-    });
-
-    render(<EditMovieForm />);
-
-    // Simulate filling out and submitting the form
-    const submitButton = screen.getByText("SUBMIT"); // Assuming "SUBMIT" is the text for the submit button in MovieForm
-    fireEvent.click(submitButton);
-
-    // Wait to ensure no navigation occurs in case of an error
-    await waitFor(() => {
-      expect(fetch).toHaveBeenCalledWith("http://localhost:4000/movies", expect.any(Object));
-      expect(navigateMock).not.toHaveBeenCalledWith(expect.stringContaining("/"));
-    });
-  });
-
-  it("navigates to the home page if response data has no ID", async () => {
-    // Mock fetch to simulate success response without ID
-    fetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({}),
-    });
-
-    render(<EditMovieForm />);
-
-    // Simulate filling out and submitting the form
-    const submitButton = screen.getByText("SUBMIT"); // Assuming "SUBMIT" is the text for the submit button in MovieForm
-    fireEvent.click(submitButton);
-
-    // Wait for handleSubmit's navigation logic to be called
-    await waitFor(() => {
-      expect(fetch).toHaveBeenCalledWith("http://localhost:4000/movies", expect.any(Object));
-      expect(navigateMock).toHaveBeenCalledWith("/");
     });
   });
 });

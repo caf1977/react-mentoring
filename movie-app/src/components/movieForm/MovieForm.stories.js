@@ -25,9 +25,9 @@ export const AddMovie = {
 export const EditMovie = {
     args: {
         initialMovie: {
-            title: "Star Wars",
+            title: "Spider Man",
             release_date: "2008-05-12",
-            poster_path: "https://upload.wikimedia.org/wikipedia/en/7/7f/Star_Wars_The_Last_Jedi.jpg",
+            poster_path: "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg",
             vote_average: 5.5,
             genres: ["Horror", "Comedy"],
             runtime: "120",

@@ -1,4 +1,5 @@
 import {render, screen, fireEvent} from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 import MovieTile from "./MovieTile";
 
 describe("MovieTile component tests", () => {
@@ -11,7 +12,12 @@ describe("MovieTile component tests", () => {
     };
 
     it("renders movie tile info", () => {
-        render(<MovieTile movieInfo={movie}/>);
+        render(
+            <MemoryRouter> {/* Wrap the component with a router */}
+                <MovieTile movieInfo={movie}/>
+            </MemoryRouter>
+        );
+        
         const image = screen.getByAltText("Mission Impossible");
         const name = screen.getByText("Mission Impossible");
         const releaseYear = screen.getByText("2018");
@@ -25,7 +31,12 @@ describe("MovieTile component tests", () => {
 
     it("onClick is called when image is clicked", () => {
         window.alert = jest.fn();
-        render(<MovieTile movieInfo={movie} onClick={(value) => {alert(value)}}/>);
+        render(
+            <MemoryRouter> {/* Wrap the component with a router */}
+                <MovieTile movieInfo={movie} onClick={(value) => {alert(value)}}/>
+            </MemoryRouter>
+        );
+
         const tile = screen.getByTestId("info");
         fireEvent.click(tile);
 
@@ -33,7 +44,11 @@ describe("MovieTile component tests", () => {
     })
 
     it("renders snapshot", () => {
-        const { asFragment } = render(<MovieTile movieInfo={movie}/>);
+        const { asFragment } = render(
+            <MemoryRouter> {/* Wrap the component with a router */}
+                <MovieTile movieInfo={movie}/>
+            </MemoryRouter>
+            );
 
         expect(asFragment(<MovieTile movieInfo={movie}/>)).toMatchSnapshot();
     })

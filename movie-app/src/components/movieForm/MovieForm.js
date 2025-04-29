@@ -8,7 +8,7 @@ const MovieForm =({ initialMovie = {}, onSubmit }) => {
     const genreOptions = ["Crime", "Documentary", "Horror", "Comedy"];
 
     const initialValues = {
-        id: initialMovie?.id || "",
+        id: initialMovie?.id,
         title: initialMovie?.title || "",
         release_date: initialMovie?.release_date || "",
         poster_path: initialMovie?.poster_path || "",

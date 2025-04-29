@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router";
 import Dialog from "../dialog/Dialog";
 import MovieForm from "../movieForm/MovieForm";
 
