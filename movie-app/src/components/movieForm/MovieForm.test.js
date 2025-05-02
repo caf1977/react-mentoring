@@ -1,4 +1,4 @@
-import {render, screen, fireEvent, act, waitFor } from "@testing-library/react";
+import {render, screen, fireEvent, act } from "@testing-library/react";
 import MovieForm from "./MovieForm";
 
 describe("Movie Form component tests", () => {

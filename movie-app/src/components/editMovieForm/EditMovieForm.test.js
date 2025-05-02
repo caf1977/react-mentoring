@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { useNavigate, useSearchParams, useLoaderData, MemoryRouter } from "react-router";
+import { useNavigate, useSearchParams, useLoaderData } from "react-router-dom";
 import EditMovieForm from "./EditMovieForm";
 import '@testing-library/jest-dom';
 
@@ -10,8 +10,8 @@ jest.mock("focus-trap-react", () => ({
     default: ({ children }) => <>{children}</>, // Simple passthrough
 }));
 
-jest.mock("react-router", () => ({
-    ...jest.requireActual("react-router"),
+jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
     useNavigate: jest.fn(),
     useSearchParams: jest.fn(),
     useLoaderData: jest.fn(),
@@ -44,11 +44,7 @@ describe("EditMovieForm Component tests", () => {
   });
 
   it("renders the EditMovieForm component with initial movie data", () => {
-    render(
-        <MemoryRouter> {/* Wrap the component with a router */}
-            <EditMovieForm />
-        </MemoryRouter>
-    );
+    render(<EditMovieForm />);
     
     expect(screen.getByText("EDIT MOVIE")).toBeInTheDocument();
     expect(screen.getByDisplayValue(loaderDataMock.title)).toBeInTheDocument();
@@ -56,11 +52,7 @@ describe("EditMovieForm Component tests", () => {
   });
 
   it("navigates to the previous URL when handleClose is triggered", () => {
-    render(
-        <MemoryRouter> {/* Wrap the component with a router */}
-            <EditMovieForm />
-        </MemoryRouter>
-    );
+    render(<EditMovieForm />);
 
     const closeButton = screen.getByTestId("close-button");
     fireEvent.click(closeButton);
@@ -75,11 +67,7 @@ describe("EditMovieForm Component tests", () => {
       json: async () => ({ id: 42 }),
     });
 
-    render(
-        <MemoryRouter> {/* Wrap the component with a router */}
-            <EditMovieForm />
-        </MemoryRouter>
-    );
+    render(<EditMovieForm />);
 
     const submitButton = screen.getByText("SUBMIT");
     fireEvent.click(submitButton);

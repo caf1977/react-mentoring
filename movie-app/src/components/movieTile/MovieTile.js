@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './MovieTile.css'
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const MovieTile = ({movieInfo, onClick}) => {
     const [searchParams] = useSearchParams();

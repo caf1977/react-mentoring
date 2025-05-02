@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { useNavigate, useSearchParams, MemoryRouter } from "react-router";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import AddMovieForm from "./AddMovieForm";
 import '@testing-library/jest-dom';
 
@@ -10,8 +10,8 @@ jest.mock("focus-trap-react", () => ({
     default: ({ children }) => <>{children}</>, // Simple passthrough
 }));
 
-jest.mock("react-router", () => ({
-    ...jest.requireActual("react-router"),
+jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
     useNavigate: jest.fn(),
     useSearchParams: jest.fn(),
 }));
@@ -30,21 +30,14 @@ describe("AddMovieForm Component tests", () => {
     });
 
     it("renders the AddMovieForm component", () => {
-        render(
-            <MemoryRouter> {/* Wrap the component with a router */}
-                <AddMovieForm />
-            </MemoryRouter>
-        );
+        render(<AddMovieForm />);
+
         expect(screen.getByText("ADD MOVIE")).toBeInTheDocument();
         expect(screen.getByTestId("movie-form")).toBeInTheDocument();
     });
 
     it("navigates to the root URL when handleClose is triggered", () => {
-        render(
-            <MemoryRouter> {/* Wrap the component with a router */}
-                <AddMovieForm />
-            </MemoryRouter>
-        );
+        render(<AddMovieForm />);
 
         const closeButton = screen.getByTestId("close-button");
         fireEvent.click(closeButton);
@@ -59,11 +52,7 @@ describe("AddMovieForm Component tests", () => {
             json: async () => ({ id: 42 }),
         });
 
-        render(
-            <MemoryRouter> {/* Wrap the component with a router */}
-                <AddMovieForm />
-            </MemoryRouter>
-        );
+        render(<AddMovieForm />);
 
         // Simulate filling out and submitting the form
         const submitButton = screen.getByText("SUBMIT");
