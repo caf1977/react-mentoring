@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom"
+import { Outlet, useSearchParams } from "react-router-dom"
 import Search from "./Search";
 
 const SearchWrapper = () => {
@@ -10,7 +10,10 @@ const SearchWrapper = () => {
     };
 
     return (
-        <Search initialQuery={initialQuery} onSearch={handleSearch} />
+        <>
+            <Search initialQuery={initialQuery} onSearch={handleSearch} />
+            <Outlet />
+        </>
     );
 }
 

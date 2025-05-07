@@ -9,7 +9,7 @@ const MovieDetail = ({movieInfo}) => {
                     <div className="movie-detail-name">{movieInfo.title}</div>
                     <div className="movie-detail-rating">{movieInfo.vote_average}</div>
                 </div>
-                <div className="movie-detail-genres">{movieInfo.genres.join(",")}</div>
+                <div className="movie-detail-genres">{movieInfo.genres?.join(",")}</div>
                 <div className="movie-detail-middle">
                     <h2>{movieInfo.release_date}</h2>
                     <h2>{movieInfo.runtime}</h2>

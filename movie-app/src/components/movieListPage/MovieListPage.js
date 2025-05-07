@@ -12,7 +12,8 @@ const MovieListPage = () => {
 
     const search = searchParams.get("search") || "";
     const genre = searchParams.get("genre") || "ALL";
-    const sortBy = searchParams.get("sortBy") || "title"; 
+    const sortBy = searchParams.get("sortBy") || "title";
+    const refresh = searchParams.get("refresh");
 
     const [movies, setMovies] = useState([]);
 
@@ -54,7 +55,7 @@ const MovieListPage = () => {
                         filter: (genre === "ALL" ? "" : genre),
                         sortBy,
                         sortOrder: "asc",
-                        searchBy: "title"
+                        searchBy: "title",
                     },
                     signal: controller.signal,
                 });
@@ -67,14 +68,23 @@ const MovieListPage = () => {
                 }
             }
         };
+
         fetchMovies();
+
+        if (refresh) {
+            setSearchParams((prev) => {
+                const updated = new URLSearchParams(prev);
+                updated.delete("refresh");
+                return updated;
+            });
+        }
 
         return () => {
             // Cleanup function to abort previous request if the component unmounts
             // or if parameters change before request completes.
             controller.abort();
         };
-    }, [search, genre, sortBy]); // Effect runs when search, genre, or sortBy changes.
+    }, [search, genre, sortBy, refresh, setSearchParams]);
 
     return (
         <div className="page-container">
