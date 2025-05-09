@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './MovieTile.css'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 

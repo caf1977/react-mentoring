@@ -1,3 +1,4 @@
+import React from 'react';
 import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import MovieDetail from "./MovieDetail";
 import { FaSearch } from 'react-icons/fa';

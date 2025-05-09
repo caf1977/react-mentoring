@@ -1,3 +1,4 @@
+import React from 'react';
 import { Outlet, useSearchParams } from "react-router-dom"
 import Search from "./Search";
 

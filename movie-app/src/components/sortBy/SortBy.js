@@ -1,3 +1,4 @@
+import React from 'react';
 import './SortBy.css';
 
 const SortBy = ({
