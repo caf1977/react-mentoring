@@ -1,10 +1,10 @@
-import {render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import MovieForm from "./MovieForm";
 
 describe("Movie Form component tests", () => {
 
     const genreOptions = ["Crime", "Documentary", "Horror", "Comedy"];
-    
+
     const initialMovie = {
         title: "Star Wars",
         release_date: "2008-05-12",
@@ -34,12 +34,12 @@ describe("Movie Form component tests", () => {
         expect(vote_average).not.toHaveValue();
         expect(runtime).not.toHaveValue();
         expect(overview).toHaveValue("");
-        
+
         genreOptions.forEach((genre) => {
             const checkbox = screen.getByLabelText(genre);
             expect(checkbox).toBeInTheDocument();
             expect(checkbox).toHaveAttribute("type", "checkbox");
-          });
+        });
     })
 
     it("renders edit movie form with data", () => {
@@ -77,11 +77,11 @@ describe("Movie Form component tests", () => {
 
         render(<MovieForm initialMovie={initialMovie} onSubmit={onSubmit} />);
 
-        await act(async () => {
-            fireEvent.click(screen.getByText("SUBMIT"));
-        });
+        fireEvent.click(screen.getByText("SUBMIT"));
 
-        expect(onSubmit).toHaveBeenCalledTimes(1);
+        await waitFor(() => {
+            expect(onSubmit).toHaveBeenCalledTimes(1);
+        });
     })
 
     it("onSubmit is not called and form is cleared when the reset button is clicked", async () => {
@@ -89,10 +89,10 @@ describe("Movie Form component tests", () => {
 
         render(<MovieForm initialMovie={initialMovie} onSubmit={onSubmit} />);
 
-        await act(async () => {
-            fireEvent.click(screen.getByText("RESET"));
-        });
+        fireEvent.click(screen.getByText("RESET"));
 
-        expect(onSubmit).not.toHaveBeenCalled();
+        await waitFor(() => {
+            expect(onSubmit).not.toHaveBeenCalled();
+        });
     })
 })

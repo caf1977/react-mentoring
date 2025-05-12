@@ -21,7 +21,7 @@ describe("EditMovieForm Component tests", () => {
   let navigateMock, searchParamsMock, loaderDataMock;
 
   beforeEach(() => {
-    fetch = jest.fn();
+    jest.spyOn(global, 'fetch').mockResolvedValue({ json: jest.fn() });
     navigateMock = jest.fn();
     searchParamsMock = {
       toString: jest.fn().mockReturnValue("test=123"),
@@ -35,8 +35,6 @@ describe("EditMovieForm Component tests", () => {
     useNavigate.mockReturnValue(navigateMock);
     useSearchParams.mockReturnValue([searchParamsMock]);
     useLoaderData.mockReturnValue(loaderDataMock);
-
-    fetch.mockReset();
   });
 
   afterEach(() => {
@@ -74,6 +72,8 @@ describe("EditMovieForm Component tests", () => {
 
     await waitFor(() => {
       expect(fetch).toHaveBeenCalledWith("http://localhost:4000/movies", expect.any(Object));
+    });
+    await waitFor(() => {
       expect(navigateMock).toHaveBeenCalledWith("/42?test=123&refresh=true");
     });
   });

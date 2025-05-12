@@ -20,13 +20,12 @@ describe("AddMovieForm Component tests", () => {
     let navigateMock;
 
     beforeEach(() => {
-        fetch = jest.fn();
+        jest.spyOn(global, 'fetch').mockResolvedValue({ json: jest.fn() });
         navigateMock = jest.fn();
         useNavigate.mockReturnValue(navigateMock);
         useSearchParams.mockReturnValue([
             new URLSearchParams("?test=123"),
         ]);
-        fetch.mockReset();
     });
 
     it("renders the AddMovieForm component", () => {
@@ -60,6 +59,8 @@ describe("AddMovieForm Component tests", () => {
 
         await waitFor(() => {
             expect(fetch).toHaveBeenCalledWith("http://localhost:4000/movies", expect.any(Object));
+        });
+        await waitFor(() => {
             expect(navigateMock).toHaveBeenCalledWith("/42");
         });
     });

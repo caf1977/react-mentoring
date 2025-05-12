@@ -7,8 +7,10 @@ describe("SortBy component tests", () => {
         const dropdown = screen.getByLabelText("SORT BY:");
 
         expect(dropdown).toBeInTheDocument();
-        expect(dropdown.children[0].textContent).toBe("RELEASE DATE");
-        expect(dropdown.children[1].textContent).toBe("TITLE");
+        const options = screen.getAllByRole("option");
+        expect(options).toHaveLength(2);
+        expect(options[0]).toHaveTextContent(/release date/i);
+        expect(options[1]).toHaveTextContent(/title/i);
     })
 
     it("release date as current selection", () => {
@@ -16,8 +18,10 @@ describe("SortBy component tests", () => {
         const dropdown = screen.getByLabelText("SORT BY:");
 
         expect(dropdown).toBeInTheDocument();
-        expect(dropdown.children[0].selected).toBe(true);
-        expect(dropdown.children[1].selected).toBe(false);
+        const options = screen.getAllByRole("option");
+        expect(options).toHaveLength(2);
+        expect(options[0].selected).toBe(true);
+        expect(options[1].selected).toBe(false);
     })
 
     it("title as current selection", () => {
@@ -25,8 +29,10 @@ describe("SortBy component tests", () => {
         const dropdown = screen.getByLabelText("SORT BY:");
 
         expect(dropdown).toBeInTheDocument();
-        expect(dropdown.children[0].selected).toBe(false);
-        expect(dropdown.children[1].selected).toBe(true);
+        const options = screen.getAllByRole("option");
+        expect(options).toHaveLength(2);
+        expect(options[0].selected).toBe(false);
+        expect(options[1].selected).toBe(true);
     })
 
     it("onChange is called when option is selected", () => {
