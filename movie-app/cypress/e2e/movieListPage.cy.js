@@ -96,7 +96,8 @@ describe('MovieList page E2E testing', () => {
 
     cy.visit("http://localhost:3000/");
 
-    cy.get(".sort-by-list").select("release_date").trigger("change");
+    cy.get(".sort-by-list").select("release_date");
+    cy.get(".sort-by-list").trigger("change");
 
     cy.get(".movie-tile").first().should("contain", "Any Movie");
     cy.get(".movie-tile").last().should("contain", "Other Movie");
