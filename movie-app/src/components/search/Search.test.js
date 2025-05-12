@@ -12,7 +12,7 @@ describe("Search component tests", () => {
     let navigateMock, searchParamsMock;
 
     beforeEach(() => {
-        fetch = jest.fn();
+        jest.spyOn(global, 'fetch').mockResolvedValue({ json: jest.fn() });
         navigateMock = jest.fn();
         searchParamsMock = {
             toString: jest.fn().mockReturnValue("test=123"),
@@ -20,8 +20,6 @@ describe("Search component tests", () => {
 
         useNavigate.mockReturnValue(navigateMock);
         useSearchParams.mockReturnValue([searchParamsMock]);
-
-        fetch.mockReset();
     });
 
     afterEach(() => {
