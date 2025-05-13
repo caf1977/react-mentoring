@@ -99,6 +99,8 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
     "babel-jest": "^29.7.0",
     "css-loader": "^7.1.2",
     "cypress": "^14.3.2",
@@ -118,6 +120,8 @@
     "prop-types": "^15.8.1",
     "storybook": "^8.6.10",
     "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
     "webpack": "^5.99.8",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1"
