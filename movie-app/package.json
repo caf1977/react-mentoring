@@ -9,7 +9,7 @@
     "formik": "^2.4.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^5.5.0",
+    "react-icons": "^4.7.1",
     "react-portal": "^4.3.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
@@ -17,9 +17,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "webpack serve --config webpack.config.dev.js",
-    "build:dev": "webpack --config webpack.config.dev.js",
-    "build:prod": "webpack --config webpack.config.prod.js",
+    "start": "webpack serve --config webpack.config.dev.ts",
+    "build:dev": "webpack --config webpack.config.dev.ts",
+    "build:prod": "webpack --config webpack.config.prod.ts",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
@@ -31,9 +31,11 @@
     "env": {
       "browser": true,
       "es2021": true,
-      "cypress/globals": true
+      "cypress/globals": true,
+      "jest": true,
+      "node": true
     },
-    "parser": "@babel/eslint-parser",
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "requireConfigFile": false,
       "ecmaVersion": "latest",
@@ -43,15 +45,31 @@
       }
     },
     "extends": [
-      "react-app",
-      "react-app/jest",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
       "plugin:storybook/recommended",
       "eslint:recommended",
       "plugin:cypress/recommended"
     ],
     "plugins": [
+      "@typescript-eslint",
+      "react",
       "cypress"
-    ]
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "react/prop-types": "off"
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
   },
   "eslintIgnore": [
     "dist/",
@@ -99,11 +117,15 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5",
+    "@types/cypress": "^1.1.6",
+    "@types/node": "^22.15.18",
+    "@types/react": "^17.0.85",
+    "@types/react-dom": "^17.0.26",
+    "@types/webpack": "^5.28.5",
+    "@types/webpack-dev-server": "^4.7.2",
     "babel-jest": "^29.7.0",
     "css-loader": "^7.1.2",
-    "cypress": "^14.3.2",
+    "cypress": "^14.3.3",
     "eslint": "^8.57.1",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-cypress": "^3.0.0",
@@ -121,7 +143,7 @@
     "storybook": "^8.6.10",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.2",
-    "typescript": "^5.8.3",
+    "typescript": "^4.9.5",
     "webpack": "^5.99.8",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1"
