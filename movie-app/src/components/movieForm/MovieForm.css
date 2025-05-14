@@ -1,8 +1,7 @@
 .movie-form {
     width: 500px;
     background-color: #232323;
-    padding: 20px;
-    border: 1px solid #ddd;
+    padding: 0 20px;
     padding-bottom: 30px;
 }
 
@@ -91,4 +90,9 @@
 .form-footer {
     text-align: right;
     margin-top: 40px;
+}
+
+.error {
+    font-size: small;
+    color: rgb(0, 195, 255);
 }

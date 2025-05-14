@@ -37,3 +37,50 @@
     font-size: 14px;
     color: white;
 }
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+.three-dots-button {
+    position: absolute;
+    right: 15px;
+    background: #424242;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 10;
+    color: white;
+    transform: rotate(90deg);
+    margin: 5px;
+}
+
+.menu {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background: #424242;
+    border: 1px solid #424242;
+    padding: 10px;
+    z-index: 10;
+}
+
+.menu button {
+    display: block;
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: white;
+}
+
+.menu button:hover {
+    background: #f65261;
+}

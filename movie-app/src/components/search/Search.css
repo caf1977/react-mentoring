@@ -5,7 +5,7 @@
     width: 60%;
     height: 30%;
     margin-top: 40px;
-    padding: 70px 60px 80px;
+    padding: 40px 60px 80px;
 }
 
 .search-input-label {
@@ -37,4 +37,16 @@
     padding: 10px 40px;
     margin-left: 10px;
     cursor: pointer;
+}
+
+.add-movie-container {
+    display: flex;
+}
+
+.add-movie-button {
+    background-color: #424242;
+    color: #f65261;
+    padding: 10px 10px;
+    cursor: pointer;
+    margin-left: auto;
 }
