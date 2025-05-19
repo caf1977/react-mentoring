@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetail component tests renders snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="movie-detail"
+  >
+    <img
+      alt="Spider Man"
+      src="https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg"
+    />
+    <div
+      class="movie-detail-info"
+    >
+      <div
+        class="movie-detail-header"
+      >
+        <div
+          class="movie-detail-name"
+        >
+          Spider Man
+        </div>
+        <div
+          class="movie-detail-rating"
+        >
+          8.8
+        </div>
+      </div>
+      <div
+        class="movie-detail-genres"
+      >
+        Sci-Fi,Action
+      </div>
+      <div
+        class="movie-detail-middle"
+      >
+        <h2>
+          2020
+        </h2>
+        <h2>
+          120 minutes
+        </h2>
+      </div>
+      <p>
+        Peter Parker returns home to live with his Aunt May and mentor Tony Stark after his debut as Spider-Man in Captain America: Civil War.
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

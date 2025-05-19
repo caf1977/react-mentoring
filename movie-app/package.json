@@ -9,7 +9,7 @@
     "formik": "^2.4.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-icons": "^5.5.0",
+    "react-icons": "^4.7.1",
     "react-portal": "^4.3.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
@@ -17,20 +17,75 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "webpack serve --config webpack.config.dev.ts",
+    "build:dev": "webpack --config webpack.config.dev.ts",
+    "build:prod": "webpack --config webpack.config.prod.ts",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "lint": "eslint ."
   },
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "cypress/globals": true,
+      "jest": true,
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
     "extends": [
-      "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
-    ]
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:storybook/recommended",
+      "eslint:recommended",
+      "plugin:cypress/recommended"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "react",
+      "cypress"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "react/prop-types": "off"
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  },
+  "eslintIgnore": [
+    "dist/",
+    "build/",
+    "node_modules/"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint",
+    "*.jsx": "eslint",
+    "*.css": "stylelint --fix",
+    "*.{js,jsx,json,css,md}": "prettier --write"
   },
   "browserslist": {
     "production": [
@@ -46,9 +101,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",
+    "@babel/eslint-parser": "^7.27.1",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
     "@chromatic-com/storybook": "^3.2.6",
+    "@eslint/js": "^9.26.0",
     "@storybook/addon-essentials": "^8.6.10",
     "@storybook/addon-interactions": "^8.6.10",
     "@storybook/addon-onboarding": "^8.6.10",
@@ -60,14 +117,35 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
+    "@types/cypress": "^1.1.6",
+    "@types/node": "^22.15.18",
+    "@types/react": "^17.0.85",
+    "@types/react-dom": "^17.0.26",
+    "@types/webpack": "^5.28.5",
+    "@types/webpack-dev-server": "^4.7.2",
     "babel-jest": "^29.7.0",
-    "cypress": "^14.3.2",
+    "css-loader": "^7.1.2",
+    "cypress": "^14.3.3",
+    "eslint": "^8.57.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-cypress": "^3.0.0",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-storybook": "^0.12.0",
+    "globals": "^16.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "husky": "^4.3.8",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.5.3",
     "prop-types": "^15.8.1",
     "storybook": "^8.6.10",
-    "webpack": "^5.98.0"
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.99.8",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-cli": "^6.0.1"
   }
 }

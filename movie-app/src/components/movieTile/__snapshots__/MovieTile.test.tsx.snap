@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieTile component tests renders snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="movie-tile"
+    data-testid="info"
+  >
+    <div
+      class="image-container"
+    >
+      <img
+        alt="Mission Impossible"
+        src="https://m.media-amazon.com/images/M/MV5BN2U4OTdmM2QtZTkxYy00ZmQyLTg2N2UtMDdmMGJmNDhlZDU1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+      />
+      <button
+        class="three-dots-button"
+      >
+        …
+      </button>
+    </div>
+    <div
+      class="movie-tile-info"
+    >
+      <h3>
+        Mission Impossible
+      </h3>
+      <div
+        class="movie-tile-info-year"
+      >
+        <h2>
+          2018
+        </h2>
+      </div>
+    </div>
+    <p>
+      Drama,Thriller
+    </p>
+  </div>
+</DocumentFragment>
+`;
