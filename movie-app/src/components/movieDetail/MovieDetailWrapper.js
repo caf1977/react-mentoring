@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import MovieDetail from "./MovieDetail";
 import { FaSearch } from 'react-icons/fa';
 import './MovieDetail.css'
@@ -18,6 +18,7 @@ const MovieDetailWrapper = () => {
                 </button>
             </div>
             <MovieDetail movieInfo={movieInfo} />
+            <Outlet />
         </div>
     );
 } 

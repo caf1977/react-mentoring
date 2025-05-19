@@ -1,192 +1,166 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import './MovieForm.css';
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
-class MovieForm extends Component {
-    constructor(props) {
-        super(props);
+const MovieForm =({ initialMovie = {}, onSubmit }) => {
+    const [genreListOpen, setGenreListOpen] = useState(false);
 
-        this.state = {
-            title: props.initialMovie?.title || "",
-            releaseDate: props.initialMovie?.releaseDate || "",
-            movieUrl: props.initialMovie?.movieUrl || "",
-            rating: props.initialMovie?.rating || "",
-            genres: props.initialMovie?.genres || [],
-            genreListOpen: false,
-            runtime: props.initialMovie?.runtime || "",
-            overview: props.initialMovie?.overview || "", 
-            clickedButton: props.initialMovie?.clickedButton || "", 
+    const genreOptions = ["Crime", "Documentary", "Horror", "Comedy"];
+
+    const initialValues = {
+        id: initialMovie?.id,
+        title: initialMovie?.title || "",
+        release_date: initialMovie?.release_date || "",
+        poster_path: initialMovie?.poster_path || "",
+        vote_average: initialMovie?.vote_average || "",
+        genres: initialMovie?.genres || [],
+        runtime: initialMovie?.runtime || "",
+        overview: initialMovie?.overview || "",
+    };
+
+    const validateForm = (values) => {
+        const errors = {};
+        if (!values.title) {
+            errors.title = "Required";
         }
-    }
-
-    handleChange = (e) => {
-        const { name, value, checked } = e.target;
-
-        if (name === "genres") {
-            const genres = [...this.state.genres];
-            if (checked) {
-              genres.push(value);
-            } else {
-              const index = genres.indexOf(value);
-              if (index > -1) {
-                genres.splice(index, 1);
-              }
-            }
-            this.setState({ genres });
-          } else {
-            this.setState({ [name]: value });
-          }
+        if (!values.release_date) {
+            errors.release_date = "Required";
+        } 
+        if (!values.poster_path) {
+            errors.poster_path = "Required";
+        }
+        if (!values.vote_average) {
+            errors.vote_average = "Required";
+        }        
+        if (!values.runtime) {
+            errors.runtime = "Required";
+        }       
+        if (!values.overview) {
+            errors.overview = "Required";
+        }
+        return errors;
     };
 
-    handleGenreListToggle = () => {
-        this.setState((prevState) => ({ genreListOpen: !prevState.genreListOpen }));
-    };
+    const handleGenresChange = (e, values, setFieldValue) => {
+        const { checked, value } = e.target;
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        const { onSubmit } = this.props;
-        const { clickedButton } = this.state;
-
-        if (clickedButton === "submit") {
-            const movieInfo = {...this.state}
-            onSubmit(movieInfo);
+        if (checked) {
+            setFieldValue("genres", [...values.genres, value]);
         } else {
-            this.setState({
-                title: "",
-                releaseDate: "",
-                movieUrl: "",
-                genres: [],
-                rating: "",
-                runtime: "",
-                overview: "",
-              });
+            setFieldValue(
+                "genres",
+                values.genres.filter((genre) => genre !== value)
+            );
         }
     };
 
-    render() {
-        const { title, releaseDate, movieUrl, rating, genres, genreListOpen, runtime, overview } = this.state;
-        const genreOptions = ["Crime", "Documentary", "Horror", "Comedy"];
+    const handleSubmit = (values, { resetForm }, action) => {
+        if (action === "submit") {
+            onSubmit(values);
+        } else if (action === "reset") {
+            resetForm();
+        }
+    };
 
-        return (
-            <form className="movie-form" onSubmit={this.handleSubmit} data-testid="movie-form">
-                <h2>{this.props.initialMovie ? "EDIT MOVIE" : "ADD MOVIE"}</h2>
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="title">TITLE</label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value={title}
-                            onChange={this.handleChange}
-                        />
+    return (
+        <Formik
+            initialValues={initialValues}
+            validate={validateForm}
+            onSubmit={handleSubmit}
+        >
+            {({ values, setFieldValue, resetForm }) => (
+                <Form className="movie-form" data-testid="movie-form">
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label htmlFor="title">TITLE</label>
+                            <Field type="text" id="title" name="title" />
+                            <ErrorMessage name="title" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="release_date">RELEASE DATE</label>
+                            <Field type="date" id="release_date" name="release_date" />
+                            <ErrorMessage name="release_date" component="div" className="error" />
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="releaseDate">RELEASE DATE</label>
-                        <input
-                            type="date"
-                            id="releaseDate"
-                            name="releaseDate"
-                            value={releaseDate}
-                            onChange={this.handleChange}
-                        />
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label htmlFor="poster_path">MOVIE URL</label>
+                            <Field type="text" id="poster_path" name="poster_path" />
+                            <ErrorMessage name="poster_path" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="vote_average">RATING</label>
+                            <Field type="number" id="vote_average" name="vote_average" />
+                            <ErrorMessage name="vote_average" component="div" className="error" />
+                        </div>
                     </div>
-                </div>
-                <div className="form-row">
-                    <div className="form-group">
-                        <label htmlFor="movieUrl">MOVIE URL</label>
-                        <input
-                            type="text"
-                            id="movieUrl"
-                            name="movieUrl"
-                            value={movieUrl}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="rating">RATING</label>
-                        <input
-                            type="text"
-                            id="rating"
-                            name="rating"
-                            value={rating}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                </div>
-                <div className="form-row">
-                    <div className="form-group">
-                        <label>GENRE</label>
-                        <div className="dropdown-menu">
-                            <button
-                                type="button"
-                                className="dropdown-toggle"
-                                onClick={this.handleGenreListToggle}
-                            >
-                                Select Genre
-                            </button>
-                            {genreListOpen && (
-                                <div>
-                                    {genreOptions.map((genre) => (
-                                        <label key={genre} className="checkbox-item">
-                                            <input
-                                                type="checkbox"
-                                                name="genres"
-                                                value={genre}
-                                                checked={genres.includes(genre)}
-                                                onChange={this.handleChange}
-                                            />
-                                            {genre}
-                                        </label>
-                                    ))}
-                                </div>
-                            )}
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label>GENRE</label>
+                            <div className="dropdown-menu">
+                                <button
+                                    type="button"
+                                    className="dropdown-toggle"
+                                    onClick={() => setGenreListOpen(!genreListOpen)}
+                                >
+                                    Select Genre
+                                </button>
+                                {genreListOpen && (
+                                    <div>
+                                        {genreOptions.map((genre) => (
+                                            <label key={genre} className="checkbox-item">
+                                                <input
+                                                    type="checkbox"
+                                                    name="genres"
+                                                    value={genre}
+                                                    checked={values.genres.includes(genre)}
+                                                    onChange={(e) => handleGenresChange(e, values, setFieldValue)}
+                                                />
+                                                {genre}
+                                            </label>
+                                        ))}
+                                    </div>    
+                                )}
+                            </div>
+                            <ErrorMessage name="genres" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="runtime">RUNTIME</label>
+                            <Field type="number" id="runtime" name="runtime" />
+                            <ErrorMessage name="runtime" component="div" className="error" />
                         </div>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="runtime">RUNTIME</label>
-                        <input
-                            type="text"
-                            id="runtime"
-                            name="runtime"
-                            value={runtime}
-                            onChange={this.handleChange}
+                        <label htmlFor="overview">OVERVIEW</label>
+                        <Field
+                            as="textarea"
+                            id="overview"
+                            name="overview"
+                            placeholder="Movie description"
+                            rows="8"
                         />
+                        <ErrorMessage name="overview" component="div" className="error" />
                     </div>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="overview">OVERVIEW</label>
-                    <textarea className="form-group textarea-group"
-                        id="overview"
-                        name="overview"
-                        value={overview}
-                        onChange={this.handleChange}
-                        placeholder="Movie description"
-                        rows="8"
-                    />
-                </div>
-                <div className="form-footer">
-                    <button 
-                        type="submit" 
-                        className="form-button" 
-                        value="reset" 
-                        name="reset"
-                        onClick={() => this.setState({ clickedButton: "reset" })}
-                    >
-                        RESET
-                    </button>
-                    <button 
-                        type="submit" 
-                        className="form-button" 
-                        value="submit" 
-                        name="submit"
-                        onClick={() => this.setState({ clickedButton: "submit" })}
-                    >
-                        SUBMIT
-                    </button>
-                </div>
-            </form>
-        );
-    }
-}
+                    <div className="form-footer">
+                        <button
+                            type="button"
+                            className="form-button"
+                            onClick={(e) => handleSubmit(values, { resetForm }, "reset")}
+                        >
+                            RESET
+                        </button>
+                        <button
+                            type="submit"
+                            className="form-button"
+                            onClick={(e) => handleSubmit(values, { resetForm }, "submit")}
+                        >
+                            SUBMIT
+                        </button>
+                    </div>
+                </Form>
+            )}
+        </Formik>
+    );
+};
 
 export default MovieForm;
